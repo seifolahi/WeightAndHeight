@@ -8,6 +8,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var figure: HumanFigure!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +25,7 @@ class ViewController: UIViewController {
     }
     
     func configHumanFigure() {
-        let figure = HumanFigure()
+        figure = HumanFigure()
         figure.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(figure)
         
@@ -42,7 +44,10 @@ class ViewController: UIViewController {
     }
     
     func configWeight() {
-        let weighter = WeightMeter()
+        let weighter = WeightMeterView()
+        weighter.delegate = self
+        weighter.maxValue = 149
+        weighter.minValue = 50
         weighter.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(weighter)
         
@@ -50,5 +55,13 @@ class ViewController: UIViewController {
         weighter.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         weighter.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         weighter.heightAnchor.constraint(equalToConstant: 200).isActive = true
+    }
+}
+
+extension ViewController: WeightMeterDelegate {
+    func onWheelTick(value: CGFloat) {
+        
+        figure.fatness = (value - 50) / 5
+        print(value)
     }
 }

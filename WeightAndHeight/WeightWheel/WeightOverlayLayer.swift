@@ -16,6 +16,5 @@ class WeightOverlayLayer: CALayer {
         
         ctx.fill(CGRect(x: (WIDTH / 2) , y: 4, width: 3, height: 50))
         ctx.fillEllipse(in: CGRect(x: (WIDTH / 2) - 5, y: 54, width: 12, height: 12))
-        
     }
 }

@@ -11,6 +11,12 @@ class HumanFigure: UIView {
     
     private var shapeLayer: CALayer?
     
+    var fatness: CGFloat = 0 {
+        didSet {
+            refreshShape()
+        }
+    }
+    
     override func draw(_ rect: CGRect) {
         refreshShape()
     }
@@ -33,8 +39,6 @@ class HumanFigure: UIView {
         
         let shape = UIBezierPath()
         
-        let fat = CGFloat(15)
-        
         shape.addArc(withCenter: CGPoint(x: 50, y: 11),
                      radius: 7,
                      startAngle: CGFloat.pi / 2,
@@ -51,8 +55,8 @@ class HumanFigure: UIView {
         
         
         shape.addCurve(to: CGPoint(x: 60, y: 95),
-                       controlPoint1: CGPoint(x: 60 + fat, y: 35),
-                       controlPoint2: CGPoint(x: 60 + fat, y: 40))
+                       controlPoint1: CGPoint(x: 60 + fatness, y: 35),
+                       controlPoint2: CGPoint(x: 60 + fatness, y: 40))
         
         
         shape.addLine(to: CGPoint(x: 51, y: 95))
@@ -62,8 +66,8 @@ class HumanFigure: UIView {
         shape.addLine(to: CGPoint(x: 40, y: 95))
         
         shape.addCurve(to: CGPoint(x: 40, y: 32),
-                       controlPoint1: CGPoint(x: 40 - fat, y: 35),
-                       controlPoint2: CGPoint(x: 40 - fat, y: 40))
+                       controlPoint1: CGPoint(x: 40 - fatness, y: 35),
+                       controlPoint2: CGPoint(x: 40 - fatness, y: 40))
         
         shape.addLine(to: CGPoint(x: 27, y: 52))
         shape.addLine(to: CGPoint(x: 22, y: 48))
