@@ -11,7 +11,8 @@
 		DC01E2A4275FE2EE00F84097 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01E2A3275FE2EE00F84097 /* ViewController.swift */; };
 		DC01E2A9275FE2F200F84097 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC01E2A8275FE2F200F84097 /* Assets.xcassets */; };
 		DC01E2AC275FE2F200F84097 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC01E2AA275FE2F200F84097 /* LaunchScreen.storyboard */; };
-		DC5FE1A927632520001D83B0 /* WeightFrameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE1A827632520001D83B0 /* WeightFrameLayer.swift */; };
+		DC5FE1A927632520001D83B0 /* InnerWeightFrameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE1A827632520001D83B0 /* InnerWeightFrameLayer.swift */; };
+		DC5FE1AB27636D28001D83B0 /* OuterWeightFrameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE1AA27636D28001D83B0 /* OuterWeightFrameLayer.swift */; };
 		DC6AAF4D2762C6A2005E6F04 /* WeightMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6AAF4C2762C6A2005E6F04 /* WeightMeterView.swift */; };
 		DC6AAF4F2762C6D0005E6F04 /* HumanFigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6AAF4E2762C6D0005E6F04 /* HumanFigure.swift */; };
 		DC6AAF512762C6E7005E6F04 /* WeightOverlayLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6AAF502762C6E7005E6F04 /* WeightOverlayLayer.swift */; };
@@ -25,7 +26,8 @@
 		DC01E2A8275FE2F200F84097 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC01E2AB275FE2F200F84097 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC01E2AD275FE2F200F84097 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC5FE1A827632520001D83B0 /* WeightFrameLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightFrameLayer.swift; sourceTree = "<group>"; };
+		DC5FE1A827632520001D83B0 /* InnerWeightFrameLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerWeightFrameLayer.swift; sourceTree = "<group>"; };
+		DC5FE1AA27636D28001D83B0 /* OuterWeightFrameLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OuterWeightFrameLayer.swift; sourceTree = "<group>"; };
 		DC6AAF4C2762C6A2005E6F04 /* WeightMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightMeterView.swift; sourceTree = "<group>"; };
 		DC6AAF4E2762C6D0005E6F04 /* HumanFigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanFigure.swift; sourceTree = "<group>"; };
 		DC6AAF502762C6E7005E6F04 /* WeightOverlayLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightOverlayLayer.swift; sourceTree = "<group>"; };
@@ -78,7 +80,8 @@
 			children = (
 				DC6AAF4C2762C6A2005E6F04 /* WeightMeterView.swift */,
 				DC6AAF522762C700005E6F04 /* WeightBackgroundLayer.swift */,
-				DC5FE1A827632520001D83B0 /* WeightFrameLayer.swift */,
+				DC5FE1A827632520001D83B0 /* InnerWeightFrameLayer.swift */,
+				DC5FE1AA27636D28001D83B0 /* OuterWeightFrameLayer.swift */,
 				DC6AAF502762C6E7005E6F04 /* WeightOverlayLayer.swift */,
 			);
 			path = WeightWheel;
@@ -163,9 +166,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC6AAF512762C6E7005E6F04 /* WeightOverlayLayer.swift in Sources */,
-				DC5FE1A927632520001D83B0 /* WeightFrameLayer.swift in Sources */,
+				DC5FE1A927632520001D83B0 /* InnerWeightFrameLayer.swift in Sources */,
 				DC01E2A4275FE2EE00F84097 /* ViewController.swift in Sources */,
 				DC6AAF4D2762C6A2005E6F04 /* WeightMeterView.swift in Sources */,
+				DC5FE1AB27636D28001D83B0 /* OuterWeightFrameLayer.swift in Sources */,
 				DC01E2A0275FE2EE00F84097 /* AppDelegate.swift in Sources */,
 				DC6AAF4F2762C6D0005E6F04 /* HumanFigure.swift in Sources */,
 				DC6AAF532762C700005E6F04 /* WeightBackgroundLayer.swift in Sources */,

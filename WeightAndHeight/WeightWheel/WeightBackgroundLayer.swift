@@ -12,6 +12,7 @@ class WeightBackgroundLayer: CALayer {
     var minValue: Int = 0
     var maxValue: Int = 0
     var step: Int = 0
+    var boundrySpace: CGFloat = 0
     var numbersFont = UIFont.systemFont(ofSize: 18)
     
     override func draw(in ctx: CGContext) {
@@ -34,8 +35,10 @@ class WeightBackgroundLayer: CALayer {
                 UIGraphicsPopContext()
             }
             
+            let blockWidth = ((2 * CGFloat.pi) - (boundrySpace)) / CGFloat(maxValue - minValue)
+            
             ctx.translateBy(x: (WIDTH / 2), y: (WIDTH / 2))
-            ctx.rotate(by: CGFloat.pi / 49.5)
+            ctx.rotate(by: blockWidth)
             ctx.translateBy(x: -(WIDTH / 2), y: -(WIDTH / 2))
         }
     }

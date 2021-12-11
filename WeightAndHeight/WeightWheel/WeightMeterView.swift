@@ -16,7 +16,8 @@ class WeightMeterView: UIView {
     var delegate: WeightMeterDelegate?
     
     private var backLayer: CALayer?
-    private var frameLayer: CALayer?
+    private var innerFrameLayer: CALayer?
+    private var outerFrameLayer: CALayer?
     private var overlayLayer: CALayer?
     
     private var previousTouchPoint = CGPoint.zero
@@ -29,6 +30,8 @@ class WeightMeterView: UIView {
     var valueStep: Int = 5
     var wheelValue: CGFloat = 0
     var numbersFont: UIFont = .systemFont(ofSize: 18)
+    var lockOnBoundry = false
+    var boundrySpace: CGFloat = CGFloat.pi / 2
     
     var wheelHapticValue: CGFloat = 0
     
@@ -63,6 +66,7 @@ class WeightMeterView: UIView {
         backLayer.maxValue = maxValue
         backLayer.step = valueStep
         backLayer.numbersFont = numbersFont
+        backLayer.boundrySpace = boundrySpace
         backLayer.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.width)
 
         if let oldBackLayer = self.backLayer {
@@ -93,16 +97,27 @@ class WeightMeterView: UIView {
     
     private func refreshFrameShape() {
         
-        let frameLayer = WeightFrameLayer()
-        frameLayer.frame = bounds
-        frameLayer.updatePath()
+        let innerFrameLayer = InnerWeightFrameLayer()
+        innerFrameLayer.frame = bounds
+        innerFrameLayer.updatePath()
         
-        if let oldFrameLayer = self.frameLayer {
-            self.layer.replaceSublayer(oldFrameLayer, with: frameLayer)
+        if let oldInnerFrameLayer = self.innerFrameLayer {
+            self.layer.replaceSublayer(oldInnerFrameLayer, with: innerFrameLayer)
         } else {
-            self.layer.insertSublayer(frameLayer, at: 0)
+            self.layer.insertSublayer(innerFrameLayer, at: 0)
         }
-        self.frameLayer = frameLayer
+        self.innerFrameLayer = innerFrameLayer
+        
+        let outerFrameLayer = OuterWeightFrameLayer()
+        outerFrameLayer.frame = bounds
+        outerFrameLayer.updatePath()
+        
+        if let oldOuterFrameLayer = self.outerFrameLayer {
+            self.layer.replaceSublayer(oldOuterFrameLayer, with: outerFrameLayer)
+        } else {
+            self.layer.insertSublayer(outerFrameLayer, at: 0)
+        }
+        self.outerFrameLayer = outerFrameLayer
     }
     
     @objc func onPan(gesture: UIPanGestureRecognizer) {
@@ -117,6 +132,7 @@ class WeightMeterView: UIView {
             currentTouchPoint = gesture.location(in: self)
 
             rotateWheelLayer()
+            hapticBeepIfNeeded()
             
             let tmpFinalWheelValue = (wheelValue + wheelValueInProgress).truncatingRemainder(dividingBy: CGFloat(maxValue - minValue)) + CGFloat(minValue)
             delegate?.onWheelTick(value: tmpFinalWheelValue)
@@ -142,12 +158,16 @@ class WeightMeterView: UIView {
                                   Float(currentTouchPoint.x - myCenter.x))
 
         let extraRotation = CGFloat(currentAngle - previousAngle)
-        backLayer.setAffineTransform(startTransform.rotated(by: extraRotation))
         
-        let blockWidth = (2 * CGFloat.pi) / CGFloat(maxValue - minValue)
-        wheelValueInProgress = -(extraRotation / blockWidth)
         
-        hapticBeepIfNeeded()
+        let blockWidth = ((2 * CGFloat.pi) - (boundrySpace)) / CGFloat(maxValue - minValue)
+        
+        let tmpWheelValueInProgress = -(extraRotation / blockWidth)
+        
+        if true {
+            backLayer.setAffineTransform(startTransform.rotated(by: extraRotation))
+            wheelValueInProgress = tmpWheelValueInProgress
+        }
     }
 
     func hapticBeepIfNeeded() {
